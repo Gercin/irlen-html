@@ -148,12 +148,16 @@
   }
 
   &__features {
-    padding-top: 20px;
+    width: calc(#{$col-part-d} * 6 - #{$col-gap-d});
     @media (max-width: ($breakpoint - 1px)) {
-      padding-top: 12px;
+      width: auto;
     }
-
-    border-top: 1px solid $color-black;
+  }
+  &__features-block {
+    margin-top: 60px;
+    @media (max-width: ($breakpoint - 1px)) {
+      margin-top: 40px;
+    }
   }
   &__features-row {
     display: flex;
@@ -200,11 +204,6 @@
   }
 
   &__text {
-    width: calc(#{$col-part-d} * 9 - #{$col-gap-d});
-    @media (max-width: ($breakpoint - 1px)) {
-      width: 100%;
-    }
-    
     font-weight: 500;
     @include fsl(24px, 120%);
     @media (max-width: ($breakpoint - 1px)) {
