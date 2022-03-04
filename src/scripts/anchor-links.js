@@ -1,10 +1,10 @@
 import { mediaQuery } from './mediaQueries.js'
 
 $(window).on('load', () => {
-  
+
+  const headerHeight = $('.header').height()
+
   if (mediaQuery.matches && $('.header__panel').length) {
-    
-    const headerHeight = $('.header').height()
     const list = $('[data-list]');
 
     // nav links in header
@@ -96,18 +96,26 @@ $(window).on('load', () => {
       }, 1000 / FPS);
     }
 
-    
-
-    // anchor scroll
     $('[data-scroll]').on('click', function(event) {
-      event.preventDefault();
-  
-      const elementId = $(this).data('scroll');
-      const elementOffset = $(elementId).offset().top;
-  
-      $('html, body').animate({
-        scrollTop: elementOffset - (headerHeight + list.innerHeight() + 10)
-      }, 700);
+      scrollHandler(event, (headerHeight + list.innerHeight() + 10), this)
     })
+  }
+
+  if ($("[data-scroll]").length) {
+    $('[data-scroll]').on('click', function(event) {
+      scrollHandler(event, headerHeight, this)
+    })
+  }
+
+  function scrollHandler(event, offset, ths) {
+    event.preventDefault();
+  
+    const elementId = $(ths).data('scroll');
+    console.log(elementId);
+    const elementOffset = $(elementId).offset().top;
+
+    $('html, body').animate({
+      scrollTop: elementOffset - offset
+    }, 700);
   }
 })

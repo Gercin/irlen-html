@@ -246,6 +246,12 @@
         color: $color-blue;
       }
     }
+
+    #{$comp}__table-cell {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
   }
   &__table-line {
     margin: 0 130px -1px;
@@ -263,10 +269,6 @@
 
     &:last-child {
       padding-right: 0;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       width: calc(#{$col-part-d} * 2 - #{$col-gap-d});
     }
   }

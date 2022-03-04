@@ -75,8 +75,12 @@ block content
             .button(data-fancy-button='10')
               |Материалы для скачивания
         .margin-top
-          +tabs(tabs = ['Leadwell серия T', 'Leadwell серия LTC', 'Leadwell серия T/LTC'])
-        .margin-top.margin-top--md 
+          .tabs(data-tabs='')
+            .tabs__container
+              each item, i in ['Leadwell серия T', 'Leadwell серия LTC', 'Leadwell серия T/LTC']
+                .tabs__item(class=(i === 0 ? 'active' : '') data-tabs-item='' data-scroll=`#q${i}`)
+                  |#{item}
+        .margin-top.margin-top--md#q0
           +model-tabs(items = ['Модели', 'Возможные опции'])
     section.section.section--white.section--table
       .equip-page__block.margin-top.margin-top--md 
@@ -116,7 +120,47 @@ block content
                         |#{item.text}
                   .equip-page__table-icon 
                     +blue-arrow-svg.equip-page__table-svg
-      .container 
+      .container#q1
+        .equip-page__inner.equip-page__inner--lg
+          +model-tabs(items = ['Модели', 'Возможные опции'])
+      .equip-page__block.margin-top.margin-top--md 
+        .equip-page__table
+          .equip-page__table-head 
+            .equip-page__table-wrapper
+              each item in table
+                .equip-page__table-cell.equip-page__table-title
+                  |#{item.text}
+                  div 
+                    |#{item.label}
+          .equip-page__table-body  
+            - for (i = 0; i < 13; i++)
+              a.equip-page__table-inner(href="#") 
+                .equip-page__table-line
+                  each item, i in ['LTC-150', '300', '150', '150', '45', '7.5/6000']
+                    .equip-page__table-cell 
+                      |#{item}
+                      if (i == 5)
+                        .equip-page__table-icon 
+                          +blue-arrow-svg.equip-page__table-svg
+        ul.equip-page__block-list 
+          - for (x = 0; x < 8; x++)
+            li.equip-page__block-item
+              a.equip-page__block-link(href="#") 
+                .equip-page__block-top 
+                  .equip-page__block-caption 
+                    |Модель
+                  .equip-page__block-text
+                    |T-5i
+                .equip-page__block-body 
+                  each item in ddata
+                    .equip-page__block-cell 
+                      .equip-page__block-label 
+                        |#{item.label}
+                      .equip-page__block-text 
+                        |#{item.text}
+                  .equip-page__table-icon 
+                    +blue-arrow-svg.equip-page__table-svg
+      .container#q2
         .equip-page__inner.equip-page__inner--lg
           +model-tabs(items = ['Модели', 'Возможные опции'])
       .equip-page__block.margin-top.margin-top--md 
